@@ -1,0 +1,8 @@
+fastapi[all]
+numpy
+pandas
+scikit-learn
+tensorflow
+azure-storage-blob
+
+
