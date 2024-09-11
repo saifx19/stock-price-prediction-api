@@ -15,6 +15,7 @@ ACCOUNT_NAME = 'your_account_name'
 ACCOUNT_KEY = 'your_account_key'
 
 def load_model_from_azure(account_name, account_key, container_name, stock_name):
+    """Load LSTM model from Azure Blob Storage based on stock name."""
     try:
         conn_str = f"DefaultEndpointsProtocol=https;AccountName={account_name};AccountKey={account_key};EndpointSuffix=core.windows.net"
         blob_service_client = BlobServiceClient.from_connection_string(conn_str)
@@ -32,6 +33,7 @@ class StockRequest(BaseModel):
     stock_data: str
 
 def preprocess_stock_data(stock_data_df):
+    """Scale stock data and prepare input features for making predictions."""
     features = ['Close/Last', 'Volume', 'Open', 'High', 'Low']
 
     scaler = MinMaxScaler(feature_range=(0, 1))
